@@ -5,11 +5,12 @@ const errorMessage = document.querySelector("#error");
 
 weatherForm.addEventListener("submit", getWeather);
 
+
 function getWeather(e) {
   e.preventDefault();
   const location = weatherInput.value;
 
-  fetch(`http://localhost:3000/weather?address=${encodeURIComponent(location)}`)
+  fetch(`/weather?address=${encodeURIComponent(location)}`)
     .then((response) => response.json())
     .then((data) => {
       if (data.error) {
