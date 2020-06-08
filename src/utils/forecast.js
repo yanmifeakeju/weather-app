@@ -1,4 +1,4 @@
-const request = require("request");
+const request = require('request');
 
 const forecast = (latitude, longitude, callback) => {
   const url = `https://api.darksky.net/forecast/8b8680b41c6bb6072d2b502098c20b6c/${encodeURIComponent(
@@ -7,18 +7,23 @@ const forecast = (latitude, longitude, callback) => {
 
   request({ url, json: true }, (error, { body } = {}) => {
     if (error) {
-      callback("Unable to connect to weather service", undefined);
+      callback('Unable to connect to weather service', undefined);
     } else {
       if (body.error) {
         callback(body.error, undefined);
       }
+      const humidity = body.daily.data[0].humidity;
+      const temperatureHigh = body.daily.data[0].temperatureMax;
       const current = body.daily.data[0].summary;
       const temperature = body.currently.temperature;
       const precipitation = body.currently.precipProbability;
+     
       callback(null, {
         current,
         temperature,
         precipitation,
+        humidity,
+        temperatureHigh
       });
     }
   });

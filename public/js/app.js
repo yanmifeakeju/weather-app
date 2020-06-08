@@ -1,10 +1,9 @@
-const weatherForm = document.querySelector("form");
-const weatherInput = document.querySelector("#location");
-const weatherMessage = document.querySelector("#weather");
-const errorMessage = document.querySelector("#error");
+const weatherForm = document.querySelector('form');
+const weatherInput = document.querySelector('#location');
+const weatherMessage = document.querySelector('#weather');
+const errorMessage = document.querySelector('#error');
 
-weatherForm.addEventListener("submit", getWeather);
-
+weatherForm.addEventListener('submit', getWeather);
 
 function getWeather(e) {
   e.preventDefault();
@@ -14,12 +13,12 @@ function getWeather(e) {
     .then((response) => response.json())
     .then((data) => {
       if (data.error) {
-        weatherMessage.innerHTML = "";
-        errorMessage.innerHTML = "loading...";
+        weatherMessage.innerHTML = '';
+        errorMessage.innerHTML = 'loading...';
         displayError(data);
       } else {
-        errorMessage.innerHTML = "";
-        weatherMessage.innerHTML = "loading...";
+        errorMessage.innerHTML = '';
+        weatherMessage.innerHTML = 'loading...';
         displayWeather(data);
       }
     });
@@ -39,6 +38,9 @@ function displayWeather(data) {
             <li>Summary: ${data.forecast.current}</li>
             <li>Precipitation: ${data.forecast.precipitation}</li>
             <li>Temperature: ${data.forecast.temperature}</li>
+            <li>Humdity: ${data.forecast.humidity}</li>
+            <li>Temperature Max: ${data.forecast.temperatureHigh}</li>
+
         </ul>
         `;
   }, 3000);
