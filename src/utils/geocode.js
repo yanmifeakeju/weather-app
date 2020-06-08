@@ -1,4 +1,4 @@
-const request = require("request");
+const request = require('request');
 
 const geocode = (address, callback) => {
   const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
@@ -10,7 +10,6 @@ const geocode = (address, callback) => {
       console.log(error);
       callback(`Unable to connect to location services`, undefined);
     } else {
-      console.log("geocode: " + body);
       if (body.features.length === 0) {
         callback(`Unable to find location try another search`, undefined);
         return;
